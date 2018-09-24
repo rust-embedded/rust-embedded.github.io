@@ -42,6 +42,15 @@ correct embedded software.
 
 [book]: book
 
+# Write embedded Rust
+
+Once you have learned the basics these resources will make writing embedded
+programs easier.
+
+- [Awesome embedded Rust], a curated list of embedded and no-std crates.
+
+[Awesome embedded Rust]: https://github.com/rust-embedded/awesome-embedded-rust
+
 # Master embedded Rust
 
 Once you're quite familiar with embedded Rust development, you may find these
