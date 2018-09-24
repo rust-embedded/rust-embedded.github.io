@@ -42,6 +42,10 @@ correct embedded software.
 
 [book]: book
 
+## Frequently Asked Questions
+
+You can find our FAQ [here](faq.html).
+
 # Master embedded Rust
 
 Once you're quite familiar with embedded Rust development, you may find these
