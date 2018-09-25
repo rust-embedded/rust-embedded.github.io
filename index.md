@@ -42,6 +42,10 @@ correct embedded software.
 
 [book]: book/index.html
 
+## Frequently Asked Questions
+
+You can find our list of FAQ [here](faq.html).
+
 # Write embedded Rust
 
 Once you have learned the basics these resources will make writing embedded
@@ -50,10 +54,6 @@ programs easier.
 - [Awesome embedded Rust], a curated list of embedded and no-std crates.
 
 [Awesome embedded Rust]: https://github.com/rust-embedded/awesome-embedded-rust
-
-## Frequently Asked Questions
-
-You can find our FAQ [here](faq.html).
 
 # Master embedded Rust
 
