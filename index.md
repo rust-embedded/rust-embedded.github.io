@@ -51,6 +51,10 @@ programs easier.
 
 [Awesome embedded Rust]: https://github.com/rust-embedded/awesome-embedded-rust
 
+## Frequently Asked Questions
+
+You can find our FAQ [here](faq.html).
+
 # Master embedded Rust
 
 Once you're quite familiar with embedded Rust development, you may find these

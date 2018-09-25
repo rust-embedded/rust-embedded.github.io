@@ -30,6 +30,7 @@ main() {
 
     # build index page
     rustdoc --markdown-css rust.css --markdown-no-toc index.md
+    rustdoc --markdown-css rust.css faq.md
 
     # build books
     local books=(
