@@ -11,14 +11,14 @@ Many of these resources take the form of "books"; we collectively call these
 
 All these resources assume that you have done some Rust programming before.
 
-# Learn about embedded development
+# 1 Learn about embedded development
 
 If you are familiar with Rust but not with embedded development, this is the
 spot for you! All of these resources assume that you have done some Rust
 programming on the desktop, but that you have not done any embedded development
 before.
 
-## The Discovery book
+## 1.1 The Discovery book
 
 [The Discovery book][discovery] will teach you about microcontrollers,
 peripherals, sensors and bare metal programming through a series of small, fun
@@ -26,14 +26,14 @@ projects that you'll develop in Rust.
 
 [discovery]: discovery/index.html
 
-# Learn embedded Rust
+# 2 Learn embedded Rust
 
 If you are familiar with embedded development and familiar with Rust but have
 not used Rust for embedded development then these resources are for you. All
 these resources assume that you have done embedded development before, but not
 in any specific language.
 
-## The embedded Rust book
+## 2.1 The embedded Rust book
 
 Also known as "the book" by the embedded Rust community. [The embedded Rust
 book][book] will get you up to speed with embedded Rust development and then
@@ -42,11 +42,11 @@ correct embedded software.
 
 [book]: book/index.html
 
-## Frequently Asked Questions
+## 2.2 Frequently Asked Questions
 
 You can find our list of FAQ [here](faq.html).
 
-# Write embedded Rust
+# 3 Write embedded Rust
 
 Once you have learned the basics these resources will make writing embedded
 programs easier.
@@ -55,12 +55,12 @@ programs easier.
 
 [Awesome embedded Rust]: https://github.com/rust-embedded/awesome-embedded-rust
 
-# Master embedded Rust
+# 4 Master embedded Rust
 
 Once you're quite familiar with embedded Rust development, you may find these
 advanced resources useful.
 
-## The embedonomicon
+## 4.1 The embedonomicon
 
 For those that want to dive into the implementation of the foundational crates
 of the embedded ecosystem. [The embedonomicon] will guide you through the abyss
