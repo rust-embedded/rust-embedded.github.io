@@ -268,6 +268,36 @@ big then check out our section on optimizations.
 
 > **TODO**(resources team) add link to the optimizations section
 
+# I'm trying to follow the book but my program won't flash
+
+It is quite common that by oversight the linker configuration is not suitable
+for the target device. Indications for such a problem are loading errors in `gdb`:
+
+```
+(gdb) load
+Loading section .vector_table, size 0x400 lma 0x0
+Loading section .text, size 0x2064 lma 0x400
+Load failed
+```
+
+Please note the `lma` which is the loading address and needs to match up with the
+start address of the flash.
+
+Similarly `openocd` will indicate such a problem:
+
+```
+...
+auto erase enabled
+Info : device id = 0x10036422
+Info : flash size = 256kbytes
+Warn : no flash bank found for address 0
+wrote 0 bytes from file target/thumbv7em-none-eabihf/debug/examples/hello in 0.001434s (0.000 KiB/s)
+```
+
+If you see such a message you will need to check your linker configuration, usually in
+`memory.x` for the correct addresses (and ideally also sizes). Please also note that 
+after a change you will need to `cargo clean` and rebuild to use the changed addresses.
+
 # My program just halts without connected debugger. What am I doing wrong?
 
 ## Short answer
