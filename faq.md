@@ -270,11 +270,17 @@ big then check out our section on optimizations.
 
 # My program just halts without connected debugger. What am I doing wrong?
 
-An embedded MCU will typically stop work working if exceptions (which is the MCUs
-way of signalling special or abnormal events) occur which are not handled and
-cleared, either by an exception handler or a connected debugger. The latter case is
-especially interesting because there's a method of interacting with a connected
-computer dubbed `semihosting` which will work iff a debugger is properly connected 
+## Short answer
+
+If you're using `semihosting`, switch to a different input / output mechanism.
+
+## Long answer
+
+An embedded MCU will typically stop  working if exceptions (which is the MCUs way
+of signalling special or abnormal events) occur which are not handled and cleared,
+either by an exception handler or a connected debugger. The latter case is especially
+interesting because there's a method of interacting with a connected computer 
+dubbed `semihosting` which will work iff a debugger is properly connected 
 and debugging software running and correctly set up. This method uses special
 processor instructions (e.g. a service or breakpoint call) to alert the connected
 system about input and/or output requests from the device. If no debugger is 
