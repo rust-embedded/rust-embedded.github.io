@@ -297,3 +297,33 @@ wrote 0 bytes from file target/thumbv7em-none-eabihf/debug/examples/hello in 0.0
 If you see such a message you will need to check your linker configuration, usually in
 `memory.x` for the correct addresses (and ideally also sizes). Please also note that 
 after a change you will need to `cargo clean` and rebuild to use the changed addresses.
+
+# My program just halts without connected debugger. What am I doing wrong?
+
+## Short answer
+
+If you're using `semihosting`, switch to a different input / output mechanism.
+
+## Long answer
+
+An embedded MCU will typically stop  working if exceptions (which is the MCUs way
+of signalling special or abnormal events) occur which are not handled and cleared,
+either by an exception handler or a connected debugger. The latter case is especially
+interesting because there's a method of interacting with a connected computer 
+dubbed `semihosting` which will work iff a debugger is properly connected 
+and debugging software running and correctly set up. This method uses special
+processor instructions (e.g. a service or breakpoint call) to alert the connected
+system about input and/or output requests from the device. If no debugger is 
+available to handle such a situation, the system either wait indefinitely or
+generate an even stronger exception which can only be cleared by a reset.
+
+There're two common scenarios which cause such a lockup unintentionally:
+- The use of semihosting as input / output channel, e.g. via `cortex-m-semihosting` crate
+- A `panic` in the program with the `panic-semihosting` crate in use, however the
+  occurence of a `panic` means that the program is defunct anyway
+
+Please note that examples may make use of the `semihosting` concept but this
+should not be used in production setups due to the lack of connected debugger and
+a host running appropriate debugging software. The use of a serial interface is
+often a better choice. However if you just would like to see your example running
+please make sure your setup is ready to deal with the `semihosting` requirements.
