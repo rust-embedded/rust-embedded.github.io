@@ -49,7 +49,8 @@ main() {
     rm -rf $tmpdir
 
     # check links
-    linkchecker doc
+    # mdbook doesn't handle relative links correctly in print.html so skip it.
+    linkchecker --ignore-url "discovery/print.html" doc
 }
 
 main
