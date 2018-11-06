@@ -180,7 +180,7 @@ LLVM does support the AVR architecture but the AVR backend has bugs that prevent
 it from being enabled in `rustc`. In particular, the AVR backend should be able
 to compile the `core` crate without hitting any LLVM assertion before it's
 enabled in `rustc`. A likely outdated list of LLVM bugs that need to be fixed
-can be found in [the issue tracker of the the rust-avr fork of rustc][rust-avr].
+can be found in [the issue tracker of the rust-avr fork of rustc][rust-avr].
 
 [rust-var]: https://github.com/avr-rust/rust/issues
 
