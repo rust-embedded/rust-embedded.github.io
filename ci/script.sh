@@ -49,8 +49,8 @@ main() {
     rm -rf $tmpdir
 
     # check links
-    # mdbook doesn't handle relative links correctly in print.html so skip it.
-    linkchecker --ignore-url "discovery/print.html" doc
+    # FIXME(rust-lang-nursery/mdbook#789) remove `--ignore-url` when that bug is fixed
+    linkchecker --ignore-url "print.html" doc
 }
 
 main
