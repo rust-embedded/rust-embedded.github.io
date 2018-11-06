@@ -1,4 +1,4 @@
-# `bookshelf`
+# `docs`
 
 > A collection of books and other documents about embedded Rust
 
