@@ -182,7 +182,7 @@ to compile the `core` crate without hitting any LLVM assertion before it's
 enabled in `rustc`. A likely outdated list of LLVM bugs that need to be fixed
 can be found in [the issue tracker of the rust-avr fork of rustc][rust-avr].
 
-[rust-var]: https://github.com/avr-rust/rust/issues
+[rust-avr]: https://github.com/avr-rust/rust/issues
 
 TL;DR `rustc` will support the AVR architecture when the LLVM backend is
 relatively bug free. As LLVM is a project independent of the Rust project we
