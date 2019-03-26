@@ -11,6 +11,16 @@ repository which you can find listed below:
 - [The embedded Rust book](https://github.com/rust-embedded/book)
 - [The embedonomicon](https://github.com/rust-embedded/embedonomicon)
 
+# `further resources`
+
+> Write Rust? Need inspiration? Having trouble?
+
+Here're some additional resources maintained by the [Resources team][team] which might be useful:
+
+- [The Embedded Rust Showcase](https://rust-embedded.github.io/showcase/)
+- [The Awesome Embedded Rust list](https://github.com/rust-embedded/awesome-embedded-rust)
+- [The not-yet-awesome-embedded-rust (or NYAER) list](https://github.com/rust-embedded/not-yet-awesome-embedded-rust)
+
 ## License
 
 Licensed under either of
