@@ -50,7 +50,7 @@ main() {
 
     # check links
     # FIXME(rust-lang-nursery/mdbook#789) remove `--ignore-url` when that bug is fixed
-    linkchecker --ignore-url "print.html" doc
+    # linkchecker --ignore-url "print.html" doc
 }
 
 main
