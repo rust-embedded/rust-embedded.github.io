@@ -8,8 +8,9 @@ The source code of the books is not in this repository; each book has its own
 repository which you can find listed below:
 
 - [The Discovery book](https://github.com/rust-embedded/discovery)
-- [The embedded Rust book](https://github.com/rust-embedded/book)
-- [The embedonomicon](https://github.com/rust-embedded/embedonomicon)
+- [The Embedded Rust book](https://github.com/rust-embedded/book)
+- [The Embedonomicon](https://github.com/rust-embedded/embedonomicon)
+- [Operating System development tutorials in Rust on the Raspberry Pi](https://github.com/rust-embedded/rust-raspberrypi-OS-tutorials)
 
 # `further resources`
 
