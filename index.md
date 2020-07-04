@@ -69,3 +69,21 @@ language features that let you control the ABI of crates by creating a `no_std`
 program for the ARM Cortex-M architecture from scratch.
 
 [The embedonomicon]:embedonomicon/index.html
+
+# Write Operating System in embedded Rust
+
+If you are interested in Operating Systems and embedded Rust development, you
+may find these resources useful.
+
+## Operating System development tutorials in Rust on the Raspberry Pi
+
+[Operating System development tutorials in Rust on the Raspberry Pi] is a
+tutorial series for hobby OS developers who are new to ARM's 64 bit ARMv8-A
+architecture. The tutorials will give a guided, step-by-step tour of how to
+write a monolithic Operating System kernel for an embedded system from
+scratch. They cover implementation of common Operating Systems tasks, like
+writing to the serial console, setting up virtual memory and handling hardware
+exceptions. All while leveraging Rust's unique features to provide for safety
+and speed.
+
+[Operating System development tutorials in Rust on the Raspberry Pi]: https://github.com/rust-embedded/rust-raspberrypi-OS-tutorials
