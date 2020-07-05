@@ -42,6 +42,19 @@ correct embedded software.
 
 [book]: book/index.html
 
+## Operating System development tutorials in Rust on the Raspberry Pi
+
+[Operating System development tutorials in Rust on the Raspberry Pi] is a
+tutorial series for hobby OS developers who are new to ARM's 64 bit ARMv8-A
+architecture. The tutorials will give a guided, step-by-step tour of how to
+write a monolithic Operating System kernel for an embedded system from
+scratch. They cover implementation of common Operating Systems tasks, like
+writing to the serial console, setting up virtual memory and handling hardware
+exceptions. All while leveraging Rust's unique features to provide for safety
+and speed.
+
+[Operating System development tutorials in Rust on the Raspberry Pi]: https://github.com/rust-embedded/rust-raspberrypi-OS-tutorials
+
 ## Frequently Asked Questions
 
 You can find our list of FAQ [here](faq.html).
