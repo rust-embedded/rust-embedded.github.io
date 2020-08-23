@@ -172,21 +172,10 @@ Group][wg-crates].
 
 # (When) will Rust support the AVR architecture?
 
-As of 2018-09-19 the official Rust compiler, `rustc`, relies on LLVM for
-generating machine code. It's a requirement that LLVM supports an architecture
-for `rustc` to support it.
+As of 2020-07-24 the support for AVR have been merged into the nightly version of 
+the official Rust compiler, `rustc`. See the RFC for merging the [avr-rust fork].
 
-LLVM does support the AVR architecture but the AVR backend has bugs that prevent
-it from being enabled in `rustc`. In particular, the AVR backend should be able
-to compile the `core` crate without hitting any LLVM assertion before it's
-enabled in `rustc`. A likely outdated list of LLVM bugs that need to be fixed
-can be found in [the issue tracker of the rust-avr fork of rustc][rust-avr].
-
-[rust-avr]: https://github.com/avr-rust/rust/issues
-
-TL;DR `rustc` will support the AVR architecture when the LLVM backend is
-relatively bug free. As LLVM is a project independent of the Rust project we
-can't give you any estimate on when that might happen.
+[avr-rust fork]: https://github.com/rust-lang/rust/issues/44052#issuecomment-663394401].
 
 # (When) will Rust support the Xtensa architecture?
 
