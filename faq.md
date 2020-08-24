@@ -203,7 +203,7 @@ versions of LLVM.
 TL;DR `rustc` will support the Xtensa architecture when the official LLVM gains
 support for the Xtensa architecture. As LLVM is a project independent of the
 Rust project we can't give you any estimate on when that might happen. A list of 
-submitted patchs can be found on this [LLVM dashboard][llvm-xtensa-tracker].
+submitted patches can be found on this [LLVM dashboard][llvm-xtensa-tracker].
 
 [llvm-xtensa-tracker]: https://reviews.llvm.org/W486
 
