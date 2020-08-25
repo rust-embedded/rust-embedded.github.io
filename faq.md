@@ -179,7 +179,7 @@ the official Rust compiler, `rustc`. See the RFC for merging the [avr-rust fork]
 
 # (When) will Rust support the Xtensa architecture?
 
-As of 2018-09-19 the official Rust compiler, `rustc`, relies on LLVM for
+As of 2020-08-24 the official Rust compiler, `rustc`, relies on LLVM for
 generating machine code. It's a requirement that LLVM supports an architecture
 for `rustc` to support it.
 
@@ -191,7 +191,10 @@ versions of LLVM.
 
 TL;DR `rustc` will support the Xtensa architecture when the official LLVM gains
 support for the Xtensa architecture. As LLVM is a project independent of the
-Rust project we can't give you any estimate on when that might happen.
+Rust project we can't give you any estimate on when that might happen. A list of 
+submitted patches can be found on this [LLVM dashboard][llvm-xtensa-tracker].
+
+[llvm-xtensa-tracker]: https://reviews.llvm.org/W486
 
 # My embedded Rust program is too big!
 
