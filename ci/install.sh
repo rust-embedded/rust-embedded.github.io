@@ -14,7 +14,7 @@ main() {
            --git rust-lang/mdbook \
            --tag $tag
 
-    pip install linkchecker --user
+    pip install linkchecker python-dateutil --user
 }
 
 main
