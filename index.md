@@ -24,7 +24,7 @@ before.
 peripherals, sensors and bare metal programming through a series of small, fun
 projects that you'll develop in Rust.
 
-[discovery]: discovery/index.html
+[discovery]: https://docs.rust-embedded.org/discovery/index.html
 
 # Learn embedded Rust
 
@@ -40,7 +40,7 @@ book][book] will get you up to speed with embedded Rust development and then
 teach you how to effectively use the language (AKA patterns) to build more
 correct embedded software.
 
-[book]: book/index.html
+[book]: https://docs.rust-embedded.org/book/index.html
 
 ## Operating System development tutorials in Rust on the Raspberry Pi
 
@@ -81,4 +81,4 @@ of linker scripts, symbols and ABIs. You'll learn about linker script and the
 language features that let you control the ABI of crates by creating a `no_std`
 program for the ARM Cortex-M architecture from scratch.
 
-[The embedonomicon]:embedonomicon/index.html
+[The embedonomicon]: https://docs.rust-embedded.org/embedonomicon/index.html

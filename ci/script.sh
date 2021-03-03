@@ -32,22 +32,6 @@ main() {
     rustdoc --markdown-css rust.css --markdown-no-toc index.md
     rustdoc --markdown-css rust.css faq.md
 
-    # build books
-    local books=(
-        book
-        discovery
-        embedonomicon
-    )
-
-    local tmpdir=$(mktemp -d)
-    for book in "${books[@]}"; do
-        git clone https://github.com/rust-embedded/$book $tmpdir/$book
-        ( cd $tmpdir/$book && mdbook build )
-        mv $tmpdir/$book/book doc/$book
-    done
-
-    rm -rf $tmpdir
-
     # check links
     # FIXME(rust-lang-nursery/mdbook#789) remove `--ignore-url` when that bug is fixed
     linkchecker --ignore-url "print.html" doc
