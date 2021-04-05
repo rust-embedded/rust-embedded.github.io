@@ -1,0 +1,56 @@
+name: CI
+
+on:
+  push:
+    branches: [ staging, trying, master ]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: default
+          toolchain: stable
+      - name: Install Python dependencies
+        run: |
+          pip3 install --user python-dateutil linkchecker
+      - name: Put pip binary directory into path
+        run: echo "~/.local/bin" >> $GITHUB_PATH
+      - name: Create doc directory
+        run: mkdir doc
+      - name: Download static content
+        env:
+          url: https://github.com/rust-lang/rust/raw/1.29.0/src
+        working-directory: doc
+        run: |
+          curl -LO $url/doc/rust.css
+          curl -LO $url/librustdoc/html/static/FiraSans-Regular.woff
+          curl -LO $url/librustdoc/html/static/FiraSans-Medium.woff
+          curl -LO $url/librustdoc/html/static/FiraSans-LICENSE.txt
+          curl -LO $url/librustdoc/html/static/Heuristica-Italic.woff
+          curl -LO $url/librustdoc/html/static/Heuristica-LICENSE.txt
+          curl -LO $url/librustdoc/html/static/SourceSerifPro-Regular.woff
+          curl -LO $url/librustdoc/html/static/SourceSerifPro-Bold.woff
+          curl -LO $url/librustdoc/html/static/SourceSerifPro-LICENSE.txt
+          curl -LO $url/librustdoc/html/static/SourceCodePro-Regular.woff
+          curl -LO $url/librustdoc/html/static/SourceCodePro-Semibold.woff
+          curl -LO $url/librustdoc/html/static/SourceCodePro-LICENSE.txt
+          curl -LO $url/librustdoc/html/static/LICENSE-MIT.txt
+          curl -LO $url/librustdoc/html/static/LICENSE-APACHE.txt
+          curl -LO $url/librustdoc/html/static/COPYRIGHT.txt
+      - name: Build webpage
+        run: |
+          rustdoc --markdown-css rust.css --markdown-no-toc index.md
+          rustdoc --markdown-css rust.css faq.md
+      - name: Check links
+        run: linkchecker doc
+      - name: Deploy webpage
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: doc
+          force_orphan: true
