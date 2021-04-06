@@ -55,6 +55,14 @@ and speed.
 
 [Operating System development tutorials in Rust on the Raspberry Pi]: https://github.com/rust-embedded/rust-raspberrypi-OS-tutorials
 
+## Other Training Materials
+
+The [Awesome embedded Rust] resource includes a list of other books, blogs, and
+training materials for learning embedded Rust, including complete from-scratch
+project examples and quickstart templates: [Books, blogs and training materials].
+
+[Books, blogs and training materials]: https://github.com/rust-embedded/awesome-embedded-rust#books-blogs-and-training-materials
+
 ## Frequently Asked Questions
 
 You can find our list of FAQ [here](faq.html).
