@@ -102,7 +102,7 @@ subcommands.
 
 ``` console
 $ rustup default nightly-2018-09-18 # this date is just an example
-$ rustup component add llvm-tools-preview
+$ rustup component add llvm-tools
 $ cargo install cargo-binutils
 
 $ cargo objdump -- -version
