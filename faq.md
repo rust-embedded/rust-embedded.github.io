@@ -242,12 +242,12 @@ section               size        addr
 Total               555960
 ```
 
-Of the standard sections, `.text`, `.rodata` and `.data` will occupy Flash /
+Of the standard sections, `vector_table`, `.text`, `.rodata` will occupy Flash /
 ROM; `.bss` and `.data` will occupy RAM; `.debug_*`, `.ARM.attributes` and
 `.comments` can be ignored as they won't be loaded into the target device
 memory. For the other sections you'll have to check your dependencies' docs.
 
-In this examples the program will occupy `2008` bytes of Flash.
+In these examples the program will occupy `2008` bytes of Flash.
 
 Note that most (all?) runtime crates, like `cortex-m-rt`, will check at link
 time that the program fits in the target device memory. If it doesn't fit you'll
