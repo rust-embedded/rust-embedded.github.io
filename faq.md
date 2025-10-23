@@ -247,7 +247,7 @@ ROM; `.bss` and `.data` will occupy RAM; `.debug_*`, `.ARM.attributes` and
 `.comments` can be ignored as they won't be loaded into the target device
 memory. For the other sections you'll have to check your dependencies' docs.
 
-In these examples the program will occupy `2008` bytes of Flash.
+In this example the uploaded software will occupy `2008` bytes of Flash.
 
 Note that most (all?) runtime crates, like `cortex-m-rt`, will check at link
 time that the program fits in the target device memory. If it doesn't fit you'll
