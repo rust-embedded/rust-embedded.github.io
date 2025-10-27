@@ -242,10 +242,11 @@ section               size        addr
 Total               555960
 ```
 
-Of the standard sections, `.vector_table`, `.text`, `.rodata` will occupy Flash /
-ROM; `.bss` and `.data` will occupy RAM; `.debug_*`, `.ARM.attributes` and
-`.comments` can be ignored as they won't be loaded into the target device
-memory. For the other sections you'll have to check your dependencies' docs.
+Of the standard sections, `.vector_table`, `.text`, `.rodata` and `.data` will
+occupy Flash / ROM; `.bss` and `.data` will occupy RAM; `.debug_*`,
+`.ARM.attributes` and `.comments` can be ignored as they won't be loaded into
+the target device memory. For the other sections you'll have to check your
+dependencies' docs.
 
 In this example the uploaded software will occupy `2008` bytes of Flash.
 
