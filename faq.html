@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <title>Frequently Asked Questions</title>
+
+    <link rel="stylesheet" href="rust.css">
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+    <h1 class="title">Frequently Asked Questions</h1>
+    <nav id="rustdoc"><ul>
+<li><a href="#does-rust-support-my-device" title="Does Rust support my device?">1 Does Rust support my device?</a><ul>
+<li><a href="#short-answer" title="Short answer">1.1 Short answer</a><ul></ul></li>
+<li><a href="#long-answer" title="Long answer">1.2 Long answer</a><ul>
+<li><a href="#compilation-target-support" title="Compilation target support">1.2.1 Compilation target support</a><ul></ul></li>
+<li><a href="#architecture-support" title="Architecture support">1.2.2 Architecture support</a><ul></ul></li>
+<li><a href="#crate-ecosystem-support" title="Crate ecosystem support">1.2.3 Crate ecosystem support</a><ul></ul></li></ul></li></ul></li>
+<li><a href="#when-will-rust-support-the-avr-architecture" title="(When) will Rust support the AVR architecture?">2 (When) will Rust support the AVR architecture?</a><ul></ul></li>
+<li><a href="#when-will-rust-support-the-xtensa-architecture" title="(When) will Rust support the Xtensa architecture?">3 (When) will Rust support the Xtensa architecture?</a><ul></ul></li>
+<li><a href="#my-embedded-rust-program-is-too-big" title="My embedded Rust program is too big!">4 My embedded Rust program is too big!</a><ul></ul></li>
+<li><a href="#im-trying-to-follow-the-book-but-my-program-wont-flash" title="I’m trying to follow the book but my program won’t flash">5 I’m trying to follow the book but my program won’t flash</a><ul></ul></li>
+<li><a href="#my-program-just-halts-without-connected-debugger-what-am-i-doing-wrong" title="My program just halts without connected debugger. What am I doing wrong?">6 My program just halts without connected debugger. What am I doing wrong?</a><ul>
+<li><a href="#short-answer-1" title="Short answer">6.1 Short answer</a><ul></ul></li>
+<li><a href="#long-answer-1" title="Long answer">6.2 Long answer</a><ul></ul></li></ul></li></ul></nav><h1 id="does-rust-support-my-device"><a class="doc-anchor" href="#does-rust-support-my-device">§</a>1 Does Rust support my device?</h1><h2 id="short-answer"><a class="doc-anchor" href="#short-answer">§</a>1.1 Short answer</h2>
+<p>As of 2018-09-18 the Rust compiler supports cross compiling to these embedded
+architectures (see <code>rustup target list</code>):</p>
+<ul>
+<li>ARM Cortex-M (since 1.27)
+<ul>
+<li><code>thumbv6m-none-eabi</code>, Cortex-M0</li>
+<li><code>thumbv7m-none-eabi</code>, Cortex-M3</li>
+<li><code>thumbv7em-none-eabi</code>, Cortex-M4 and Cortex-M7</li>
+<li><code>thumbv7em-none-eabihf</code>, Cortex-M4F and Cortex-M7F</li>
+</ul>
+</li>
+<li>ARM Cortex-R (1.30-beta)
+<ul>
+<li><code>armebv7r-none-eabi</code>, big endian Cortex-R4 and Cortex-R5</li>
+<li><code>armebv7r-none-eabihf</code>, big endian Cortex-R4F and Cortex-R5F</li>
+<li><code>armv7r-none-eabi</code>, little endian Cortex-R4 and Cortex-R5</li>
+<li><code>armv7r-none-eabihf</code>, little endian Cortex-R4F and Cortex-R5F</li>
+</ul>
+</li>
+<li>ARM Linux
+<ul>
+<li>ARMv5TE (e.g. ARM926EJ-S),</li>
+<li>ARMv6 (e.g. ARM11 as found in the Raspberry Pi 1 / Zero),</li>
+<li>ARMv7-A (e.g. Cortex-A8 as found in the Beaglebones),</li>
+<li>and ARMv8 (e.g. Cortex-A53 as found in the ODROID-C2) …</li>
+<li>… in GNU and MUSL flavors and in soft float and hard float variants;</li>
+<li>notably, support for ARMv4T (e.g. ARM7) and older versions is missing.</li>
+</ul>
+</li>
+<li>RISCV (1.30-beta)
+<ul>
+<li><code>riscv32imac-unknown-none-elf</code>, RV32I base instruction set with M, A and C
+extensions</li>
+<li><code>riscv32imc-unknown-none-elf</code>, RV32I base instruction set with M, and C
+extensions</li>
+</ul>
+</li>
+</ul>
+<p><code>rustc</code> also supports code generation for the MSP430 architecture (see <code>rustc --print target-list</code>).</p>
+<p>In general, ARM Cortex-M and ARM Linux have the most mature ecosystems whereas
+the ARM Cortex-R, MSP430 and RISCV ecosystems are in early stages or not as
+mature.</p>
+<p>For specific device support check <a href="https://github.com/rust-embedded/awesome-embedded-rust">awesome-embedded-rust</a>.</p>
+<h2 id="long-answer"><a class="doc-anchor" href="#long-answer">§</a>1.2 Long answer</h2>
+<p>We can talk about support at different levels: does the compiler support my
+device? does the crate ecosystem support my device?</p>
+<p>Let’s start with compiler support. The compiler supports architectures or ISA
+(Instruction Set Architectures) rather than specific devices. Compiler support
+can be further divided in two levels: compilation target support and
+architecture support.</p>
+<h3 id="compilation-target-support"><a class="doc-anchor" href="#compilation-target-support">§</a>1.2.1 Compilation target support</h3>
+<p>By compilation target support we mean that you can readily cross compile a crate
+for a certain <em>compilation target</em> using Cargo. To keep the default installation
+slim only the native compilation target is installed and other targets have to
+be installed using the <code>rustup target</code> subcommand. If <code>rustup target list</code> lists
+a compilation target that matches your device then Cargo supports cross
+compiling to your device.</p>
+<p>For example, let’s say we want to know if <code>rustc</code> supports cross compiling to
+32-bit RISCV. We check <code>rustup target list</code></p>
+<div class="example-wrap"><pre class="language-console"><code>$ rustup default 1.29.0
+$ rustup target list | grep -i riscv || echo not supported
+not supported
+
+$ rustup default nightly-2018-09-18 # this date is just an example
+$ rustc -V
+rustc 1.30.0-nightly (2224a42c3 2018-09-17)
+$ rustup target list | grep -i riscv || echo not supported
+riscv32imac-unknown-none-elf
+riscv32imc-unknown-none-elf</code></pre></div>
+<p>This indicates that 1.29 doesn’t support 32-bit RISCV but that 1.30 will.</p>
+<p>Once you have installed a compilation target using <code>rustup target add $T</code> you’ll
+be able to cross compile crates to it using <code>cargo build --target $T</code>.</p>
+<div class="example-wrap"><pre class="language-console"><code>$ rustup target add riscv32imac-unknown-none-elf
+$ cargo build --target riscv32imac-unknown-none-elf</code></pre></div><h3 id="architecture-support"><a class="doc-anchor" href="#architecture-support">§</a>1.2.2 Architecture support</h3>
+<p>If your device doesn’t appear in <code>rustup target list</code> that doesn’t mean that
+<code>rustc</code> doesn’t support your device at all. It could still support code
+generation for your device <em>architecture</em>. <code>rustc</code> uses LLVM to generate machine
+code; if the LLVM backend for your device architecture is enabled in <code>rustc</code>
+then <code>rustc</code> can produce assembly and/or object files for that architecture.</p>
+<p>The easiest way to list the architectures that LLVM supports is to run
+<code>cargo objdump -- -version</code> where <code>cargo-objdump</code> is one of <a href="https://github.com/rust-embedded/cargo-binutils"><code>cargo-binutils</code></a>
+subcommands.</p>
+<div class="example-wrap"><pre class="language-console"><code>$ rustup default nightly-2018-09-18 # this date is just an example
+$ rustup component add llvm-tools
+$ cargo install cargo-binutils
+
+$ cargo objdump -- -version
+LLVM (http://llvm.org/):
+  LLVM version 8.0.0svn
+  Optimized build.
+  Default target: x86_64-unknown-linux-gnu
+  Host CPU: skylake
+
+  Registered Targets:
+    aarch64    - AArch64 (little endian)
+    aarch64_be - AArch64 (big endian)
+    arm        - ARM
+    arm64      - ARM64 (little endian)
+    armeb      - ARM (big endian)
+    hexagon    - Hexagon
+    mips       - Mips
+    mips64     - Mips64 [experimental]
+    mips64el   - Mips64el [experimental]
+    mipsel     - Mipsel
+    msp430     - MSP430 [experimental]
+    nvptx      - NVIDIA PTX 32-bit
+    nvptx64    - NVIDIA PTX 64-bit
+    ppc32      - PowerPC 32
+    ppc64      - PowerPC 64
+    ppc64le    - PowerPC 64 LE
+    riscv32    - 32-bit RISC-V
+    riscv64    - 64-bit RISC-V
+    sparc      - Sparc
+    sparcel    - Sparc LE
+    sparcv9    - Sparc V9
+    systemz    - SystemZ
+    thumb      - Thumb
+    thumbeb    - Thumb (big endian)
+    wasm32     - WebAssembly 32-bit
+    wasm64     - WebAssembly 64-bit
+    x86        - 32-bit X86: Pentium-Pro and above
+    x86-64     - 64-bit X86: EM64T and AMD64</code></pre></div>
+<p>If your device architecture is not there that means <code>rustc</code> doesn’t support your
+device. It could be that LLVM doesn’t support the architecture (e.g. Xtensa,
+ESP8266’s architecture) or that LLVM’s support for the architecture is not
+considered stable enough and has not been enabled in <code>rustc</code> (e.g. AVR, the
+architecture most commonly found in Arduino microcontrollers).</p>
+<p>If your device architecture is there then that means that, in principle, <code>rustc</code>
+supports your device. However, an architecture like ARM can be very broad
+covering several ISAs and extensions. Instead, you’ll want to work with a
+compilation target tailored to your device. Custom compilation targets are out
+of scope for this document; you should refer to the <a href="https://rust-embedded.github.io/embedonomicon/compiler-support.html">embedonomicon</a> for more
+information.</p>
+<h3 id="crate-ecosystem-support"><a class="doc-anchor" href="#crate-ecosystem-support">§</a>1.2.3 Crate ecosystem support</h3>
+<p>Crate ecosystem support can range from generic support for the architecture to
+device-specific support. We recommend that you search on crates.io for the
+architecture (e.g. ARM or Cortex-M), for the microcontroller vendor (e.g.
+STM32), for the target device (e.g. STM32F103) and the target development board
+(e.g. STM32F3DISCOVERY). We also suggest that you check the
+<a href="https://github.com/rust-embedded/awesome-embedded-rust">awesome-embedded-rust</a> list and <a href="https://github.com/rust-embedded/wg#organization">the crates maintained by the embedded Working
+Group</a>.</p>
+<h1 id="when-will-rust-support-the-avr-architecture"><a class="doc-anchor" href="#when-will-rust-support-the-avr-architecture">§</a>2 (When) will Rust support the AVR architecture?</h1>
+<p>As of 2020-07-24 the support for AVR have been merged into the nightly version of
+the official Rust compiler, <code>rustc</code>. See the RFC for merging the <a href="https://github.com/rust-lang/rust/issues/44052#issuecomment-663394401%5D.">avr-rust fork</a>.</p>
+<h1 id="when-will-rust-support-the-xtensa-architecture"><a class="doc-anchor" href="#when-will-rust-support-the-xtensa-architecture">§</a>3 (When) will Rust support the Xtensa architecture?</h1>
+<p>As of 2020-08-24 the official Rust compiler, <code>rustc</code>, relies on LLVM for
+generating machine code. It’s a requirement that LLVM supports an architecture
+for <code>rustc</code> to support it.</p>
+<p>There is no support for the Xtensa architecture in LLVM proper. You may be able
+to find several forks of LLVM with varying levels of support for the Xtensa
+architecture but <code>rustc</code> will not be able to use any of those forks due to the
+maintenance and infrastructure costs of developing <code>rustc</code> against different
+versions of LLVM.</p>
+<p>TL;DR <code>rustc</code> will support the Xtensa architecture when the official LLVM gains
+support for the Xtensa architecture. As LLVM is a project independent of the
+Rust project we can’t give you any estimate on when that might happen. A list of
+submitted patches can be found on this <a href="https://reviews.llvm.org/W486">LLVM dashboard</a>.</p>
+<h1 id="my-embedded-rust-program-is-too-big"><a class="doc-anchor" href="#my-embedded-rust-program-is-too-big">§</a>4 My embedded Rust program is too big!</h1>
+<p>We sometimes get questions like this one: “My Rust program is 500 KB but my
+microcontroller only has 16 KB of Flash; how can I make it fit?”.</p>
+<p>The first thing to confirm is that correctly measuring the size of your program.
+<code>rustc</code> produces ELF files for most embedded targets. ELF files have metadata
+and contain debug information so measuring their size on disk with e.g. <code>ls -l</code>
+will give you the wrong number.</p>
+<div class="example-wrap"><pre class="language-console"><code>$ # 500 KB?
+$ ls -hl target/thumbv7m-none-eabi/debug/app
+-rwxr-xr-x 2 japaric japaric 554K Sep 19 13:37 target/thumbv7m-none-eabi/debug/app</code></pre></div>
+<p>The correct way to measure the size of an embedded program is to use the <code>size</code>
+program or the <a href="https://github.com/rust-embedded/cargo-binutils"><code>cargo size</code></a> subcommand.</p>
+<div class="example-wrap"><pre class="language-console"><code>$ # ~ 2 KB of Flash
+$ cargo size --bin app -- -A
+    Finished dev [unoptimized + debuginfo] target(s) in 0.01s
+app  :
+section               size        addr
+.vector_table         1024   0x8000000
+.text                  776   0x8000400
+.rodata                208   0x8000708
+.data                    0  0x20000000
+.bss                     0  0x20000000
+.debug_str          145354         0x0
+.debug_abbrev        11264         0x0
+.debug_info         139259         0x0
+.debug_macinfo          33         0x0
+.debug_pubnames      40901         0x0
+.debug_pubtypes      14326         0x0
+.ARM.attributes         50         0x0
+.debug_frame         21224         0x0
+.debug_line         117666         0x0
+.debug_ranges        63800         0x0
+.comment                75         0x0
+Total               555960</code></pre></div>
+<p>Of the standard sections, <code>.vector_table</code>, <code>.text</code>, <code>.rodata</code> and <code>.data</code> will
+occupy Flash / ROM; <code>.bss</code> and <code>.data</code> will occupy RAM; <code>.debug_*</code>,
+<code>.ARM.attributes</code> and <code>.comments</code> can be ignored as they won’t be loaded into
+the target device memory. (<code>.data</code> is initially placed in
+Flash / ROM, but copied to RAM during startup to make it writable.) For the other sections you’ll have to check your
+dependencies’ docs.</p>
+<p>In this example the uploaded software will occupy <code>2008</code> bytes of Flash.</p>
+<p>Note that most (all?) runtime crates, like <code>cortex-m-rt</code>, will check at link
+time that the program fits in the target device memory. If it doesn’t fit you’ll
+get a linker error and no output binary. So, provided that you correctly entered
+the size of the memory regions of your device then if it links it should fit in
+the target device!</p>
+<p>If you are measuring size using the right method and your program is still too
+big then check out our section on optimizations.</p>
+<blockquote>
+<p><strong>TODO</strong>(resources team) add link to the optimizations section</p>
+</blockquote>
+<h1 id="im-trying-to-follow-the-book-but-my-program-wont-flash"><a class="doc-anchor" href="#im-trying-to-follow-the-book-but-my-program-wont-flash">§</a>5 I’m trying to follow the book but my program won’t flash</h1>
+<p>It is quite common that by oversight the linker configuration is not suitable
+for the target device. Indications for such a problem are loading errors in <code>gdb</code>:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code>(gdb) load
+Loading section .vector_table, size <span class="number">0x400 </span>lma <span class="number">0x0
+</span>Loading section .text, size <span class="number">0x2064 </span>lma <span class="number">0x400
+</span>Load failed</code></pre></div>
+<p>Please note the <code>lma</code> which is the loading address and needs to match up with the
+start address of the flash.</p>
+<p>Similarly <code>openocd</code> will indicate such a problem:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code>...
+auto erase enabled
+Info : device id = <span class="number">0x10036422
+</span>Info : flash size = <span class="number">256kbytes
+</span>Warn : no flash bank found <span class="kw">for </span>address <span class="number">0
+</span>wrote <span class="number">0 </span>bytes from file target/thumbv7em-none-eabihf/debug/examples/hello <span class="kw">in </span><span class="number">0.001434s </span>(<span class="number">0.000 </span>KiB/s)</code></pre></div>
+<p>If you see such a message you will need to check your linker configuration, usually in
+<code>memory.x</code> for the correct addresses (and ideally also sizes). Please also note that
+after a change you will need to <code>cargo clean</code> and rebuild to use the changed addresses.</p>
+<h1 id="my-program-just-halts-without-connected-debugger-what-am-i-doing-wrong"><a class="doc-anchor" href="#my-program-just-halts-without-connected-debugger-what-am-i-doing-wrong">§</a>6 My program just halts without connected debugger. What am I doing wrong?</h1><h2 id="short-answer-1"><a class="doc-anchor" href="#short-answer-1">§</a>6.1 Short answer</h2>
+<p>If you’re using <code>semihosting</code>, switch to a different input / output mechanism.</p>
+<h2 id="long-answer-1"><a class="doc-anchor" href="#long-answer-1">§</a>6.2 Long answer</h2>
+<p>An embedded MCU will typically stop  working if exceptions (which is the MCUs way
+of signalling special or abnormal events) occur which are not handled and cleared,
+either by an exception handler or a connected debugger. The latter case is especially
+interesting because there’s a method of interacting with a connected computer
+dubbed <code>semihosting</code> which will work iff a debugger is properly connected
+and debugging software running and correctly set up. This method uses special
+processor instructions (e.g. a service or breakpoint call) to alert the connected
+system about input and/or output requests from the device. If no debugger is
+available to handle such a situation, the system either wait indefinitely or
+generate an even stronger exception which can only be cleared by a reset.</p>
+<p>There’re two common scenarios which cause such a lockup unintentionally:</p>
+<ul>
+<li>The use of semihosting as input / output channel, e.g. via <code>cortex-m-semihosting</code> crate</li>
+<li>A <code>panic</code> in the program with the <code>panic-semihosting</code> crate in use, however the
+occurence of a <code>panic</code> means that the program is defunct anyway</li>
+</ul>
+<p>Please note that examples may make use of the <code>semihosting</code> concept but this
+should not be used in production setups due to the lack of connected debugger and
+a host running appropriate debugging software. The use of a serial interface is
+often a better choice. However if you just would like to see your example running
+please make sure your setup is ready to deal with the <code>semihosting</code> requirements.</p>
+
+    
+</body>
+</html>
